@@ -1,5 +1,5 @@
 /**
- * @author Vinit Shahdeo <vinitshahdeo@gmail.com>
+ * @author Anurag <vinitshahdeo@gmail.com>
  */
 (function ($) {
     "use strict";
@@ -85,9 +85,9 @@ var styles2 = [
     , 'font-size: 32px'
 ].join(';');
 
-console.log('\n\n%c SAVE THE DATE: 29th Nov, 2020!', styles);
+console.log('\n\n%c SAVE THE DATE: 02nd May, 2023!', styles);
 
-console.log('%cYour presence is requested!%c\n\nRegards: Vinit Shahdeo', styles1, styles2);
+console.log('%cYour presence is requested!%c\n\nRegards: Anurag', styles1, styles2);
 
 console.log(
     `%cShaadi me zaroor aana!\n\n`,
