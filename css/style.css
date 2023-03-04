@@ -675,28 +675,20 @@ article {
 	font-family: "Figtree", sans-serif;
 	font-size: 1.2rem;
 	line-height: 1.6rem;
-	background-image: linear-gradient(45deg, #7c9885, #b5b682);
+	background-image: 1fr;
 	min-height: 100vh;
   }
   
   .articles {
 	display: grid;
 	margin-top: 25px;
-	max-width: 1200px;
+	max-width: 700px;
 	margin-inline: auto;
 	padding-inline: 24px;
-	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	grid-template-columns: 1fr;
 	gap: 24px;
   }
   
-  @media screen and (max-width: 960px) {
-	article {
-	  container: card/inline-size;
-	}
-	.article-body p {
-	  display: none;
-	}
-  }
   
   @container card (min-width: 380px) {
 	.article-wrapper {
