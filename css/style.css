@@ -365,6 +365,17 @@ img {
 	}
 }
 
+.corner-image img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width:900px) {
+	.corner-image img {
+		max-width: 30%;
+	}
+}
+
 .top-right-decoration {
 	position: absolute;
 	top: 0;
