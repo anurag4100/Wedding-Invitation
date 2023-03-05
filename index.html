@@ -42,14 +42,25 @@
             <h1>Anju </h1>
             <h2>&</h2>
             <h1>Anurag</h1>
-            <h3>Are getting married</h3>
+            <h3>request the honor of your presence.</h3>
             <p>
-               on <span class="date">02 May 2023</span></29>, At <span class="place">Forest Club</span> Gorakhpur                
+               on <span class="date">02 May 2023</span></29>, At <span class="place">Forest Club</span> Gorakhpur               
             </p>
          </div>
       </div>
-      
-      <div id="time"></div>
+      <div class="main-example">
+        <div class="countdown-container" data-timer="2023/05/02" id="main-example"></div>
+        </div>
+        <script type="text/template" id="main-example-template">
+        <div class="time <%= label %>">
+          <span class="count curr top"><%= curr %></span>
+          <span class="count next top"><%= next %></span>
+          <span class="count next bottom"><%= next %></span>
+          <span class="count curr bottom"><%= curr %></span>
+          <span class="label"><%= label.length < 6 ? label : label.substr(0, 3)  %></span>
+        </div>
+        </script>
+      <!-- <div id="time"></div>--> 
       <section class="articles">
          <article>
            <div class="article-wrapper">
@@ -178,10 +189,10 @@
       </div>
       
       <div class="actions">
-        <a href="https://goo.gl/maps/H4SojUqrfpinfBDd8" target="_blank">
+        <a href="https://goo.gl/maps/H4SojUqrfpinfBDd8" target="_blank" style="margin-top: 25px;">
           <div class="venue">SEE THE VENUE</div>
         </a>
-        <a href="./invitation/1677860377924.mp4" download="Invitation | 02 May | Hope to see you there!">
+        <a href="./invitation/1677860377924.mp4" download="Invitation | 02 May | Hope to see you there!" style="margin-top: 25px;">
           <div class="venue">DOWNLOAD INVITATION CARD</div>
         </a>
       </div>
@@ -193,10 +204,12 @@
       <div class="music">
         <audio src="./assets/mp3/song.mp3" id="my_audio" loop="loop"></audio> 
       </div>
-      <p class="happiness">Join us in our happiness!<br><a href="http://instagram.com/explore/tags/anjuanurag" target="_blank" class="twitter"><i class="fa fa-instagram"></i></a></p>
+      <p class="happiness">Join us in our happiness!<br><a href="http://instagram.com/explore/tags/anjuanurag" target="_blank" class="twitter"><i class="fa fa-instagram" style="margin-top: 25px;"></i></a></p>
       <!-- partial -->
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
       <script src='https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js'></script>
+      <script src = 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js'></script>
       <script  src="./js/script.js"></script>
    </body>
 

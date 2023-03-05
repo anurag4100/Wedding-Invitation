@@ -28,30 +28,6 @@ $(document).on('click', function(){
 // Set the date we're counting down to
 var countDownDate = new Date("May 02, 2023 00:00:00").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-    
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    // Output the result in an element with id="demo"
-    document.getElementById("time").innerHTML = "<div class='container'><div class='days block'>"+ days + "<br>Days</div>" + "<div class='hours block'>" + hours + "<br>Hours</div>" + "<div class='minutes block'>" + minutes + "<br>Minutes</div>" + "<div class='seconds block'>" + seconds + "<br>Seconds</div></div>";
-    
-    // If the count down is over, write some text 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("time").innerHTML = "Bless the married couple for happy life!";
-    }
-}, 1000);
 
 // being a bit cool :p  
 var styles = [
@@ -93,3 +69,72 @@ console.log(
     `%cShaadi me zaroor aana!\n\n`,
     'color: yellow; background:tomato; font-size: 24pt; font-weight: bold',
 )
+
+var labels = ['weeks', 'days', 'hours', 'minutes', 'seconds'],
+	TimerCount = (new Date().getFullYear() + 1) + '/01/01',
+	template = _.template( jQuery('#main-example-template').html()),
+	currDate = '00:00:00:00:00',
+	nextDate = '00:00:00:00:00',
+	parser = /([0-9]{2})/gi,
+	$example = jQuery('#main-example');
+
+	if( $example.data("timer").length ){
+		TimerCount = $example.data("timer");	
+	}
+
+// Parse countdown string to an object
+function strfobj(str) {
+	var parsed = str.match(parser),
+		obj = {};
+	labels.forEach(function(label, i) {
+		obj[label] = parsed[i]
+	});
+	return obj;
+}
+// Return the time components that diffs
+function diff(obj1, obj2) {
+	var diff = [];
+	labels.forEach(function(key) {
+		if (obj1[key] !== obj2[key]) {
+			diff.push(key);
+		}
+	});
+	return diff;
+}
+// Build the layout
+var initData = strfobj(currDate);
+labels.forEach(function(label, i) {
+	$example.append(template({
+		curr: initData[label],
+		next: initData[label],
+		label: label
+	}));
+});
+// Starts the countdown
+$example.countdown(TimerCount, function(event) {
+	var newDate = event.strftime('%w:%d:%H:%M:%S'),
+		data;
+
+	if (newDate !== nextDate) {
+		currDate = nextDate;
+		nextDate = newDate;
+		// Setup the data
+		data = {
+			'curr': strfobj(currDate),
+			'next': strfobj(nextDate)
+		};
+		// Apply the new values to each node that changed
+		diff(data.curr, data.next).forEach(function(label) {
+			var selector = '.%s'.replace(/%s/, label),
+				$node = $example.find(selector);
+			// Update the node
+			$node.removeClass('flip');
+			$node.find('.curr').text(data.curr[label]);
+			$node.find('.next').text(data.next[label]);
+			// Wait for a repaint to then flip
+			_.delay(function($node) {
+				$node.addClass('flip');
+			}, 50, $node);
+		});
+	}
+});
