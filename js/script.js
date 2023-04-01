@@ -12,6 +12,19 @@ $(document).on('click', function(){
     console.log('Shaadi me zaroor aana');
 });
 
+$( document ).ready(function() {
+    console.log( "ready!" );
+	waitForElm('.eapps-link').then((elm) => {
+		console.log('Element is ready');
+		console.log(elm.textContent);
+		document.getElementsByClassName('eapps-link')[0].style.visibility = 'hidden';
+	});
+	
+});
+$( ".eapps-link" ).load(function() {
+	// Handler for .load() called.
+	console.log( "loaded!" );
+  });
 // Set the date we're counting down to
 var countDownDate = new Date("May 02, 2023 00:00:00").getTime();
 
@@ -124,3 +137,26 @@ $example.countdown(TimerCount, function(event) {
 		});
 	}
 });
+
+
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
